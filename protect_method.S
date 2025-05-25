@@ -54,32 +54,8 @@ Linit_method_protect:
 	ldp x29,x30,[sp,#16]
 	add sp,sp,#32
 	ret
-ava_pvc_minus_32:
-	.quad 0
-ava_pvc_minus_24:
-	.quad 0
-ava_pvc_minus_16:
-	.quad 0
-ava_pvc_minus_8:
-	.quad 0
-ava_pvc:
-	ldr x16,ava_pvc_minus_16
-	ldr x15,ava_pvc_minus_8
-	sub x16,x30,x16
-	cmp x16,x15
-	b.gt ava_pvc_fail
-	ldr x16,ava_pvc_minus_24
-	br x16
-ava_pvc_fail:
-	ldr x16,ava_pvc_minus_32
-	cbz x16,ava_pvc_fail_2
-	br x16
-ava_pvc_fail_2:
-	ret
 
 .section __TEXT,__cstring,cstring_literals
-;str_pvctype:
-;	.asciz "@:@B@"
 str_atype:
 	.asciz "@:"
 seg_text:
@@ -90,10 +66,3 @@ sect_text:
 "#ava%sl1":
 	.quad 0
 	.quad 0
-/*.section __DATA,__objc_selrefs,literal_pointers,no_dead_strip
-.p2align 3
-sel.presentVC:
-	.quad m.presentVC
-.section __TEXT,__objc_methname,cstring_literals
-m.presentVC:
-	.asciz "presentViewController:animated:completion:"*/
